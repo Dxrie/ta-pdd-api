@@ -45,9 +45,16 @@ router.post("/login", async (req, res, next) => {
 
   const user = await userModel.findOne({name: name, password: password});
 
-  if (!user) return res.status(404).json("Please check your username or password.");
+  if (!user)
+    return res.status(404).json("Please check your username or password.");
 
   res.status(200).json(user);
+});
+
+router.delete("/", async (req, res, next) => {
+  await userModel.deleteMany();
+
+  return res.status(200).json(await userModel.find());
 });
 
 module.exports = router;
