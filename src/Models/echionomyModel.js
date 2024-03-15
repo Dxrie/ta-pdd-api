@@ -13,6 +13,9 @@ const echionomySchema = new mongoose.Schema(
     jumlah: {
       type: Number,
     },
+    no: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
