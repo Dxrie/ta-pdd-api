@@ -9,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const userRoute = require("./Routes/userRoute");
+const echionomyRoute = require("./Routes/echionomyRoute");
 
 mongoose
   .connect(process.env.MongooseURI)
@@ -42,5 +43,6 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/api/users", userRoute);
+app.use("/api/data", echionomyRoute);
 
 app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
