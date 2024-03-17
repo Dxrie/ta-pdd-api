@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const echionomySchema = new mongoose.Schema(
   {
-    _id: {
+    id: {
       type: String,
     },
     tipe: {
@@ -19,7 +19,6 @@ const echionomySchema = new mongoose.Schema(
   },
   {
     timestamps: true,
-    _id: false,
   }
 );
 

@@ -12,7 +12,7 @@ router.post("/create", async (req, res, next) => {
   if (!user) return res.status(404).json("The user with that id doesn't exist");
 
   const echionomy = new echionomyModel({
-    _id: id,
+    id: id,
     tipe: tipe,
     keterangan: keterangan,
     jumlah: jumlah,
@@ -27,7 +27,7 @@ router.delete("/delete", async (req, res, next) => {
   const {id, tipe, keterangan, jumlah} = req.body;
 
   const echionomy = await echionomyModel.find({
-    _id: id,
+    id: id,
     tipe: tipe,
     keterangan: keterangan,
     jumlah: jumlah,
@@ -39,7 +39,7 @@ router.delete("/delete", async (req, res, next) => {
       .json("The echionomy report you were trying to delete doesn't exist.");
 
   await echionomyModel.deleteMany({
-    _id: id,
+    id: id,
     tipe: tipe,
     keterangan: keterangan,
     jumlah: jumlah,
