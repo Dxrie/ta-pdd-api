@@ -17,6 +17,8 @@ router.get("/", async (req, res, next) => {
 router.post("/register", async (req, res, next) => {
   const {name, password} = req.body;
 
+  if (!name || !password) return res.status(400).json("Please fill out all the required fields.")
+
   let user = await userModel.findOne({name: name});
 
   if (user)
