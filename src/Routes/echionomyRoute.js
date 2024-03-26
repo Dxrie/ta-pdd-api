@@ -4,6 +4,14 @@ const router = express.Router();
 const echionomyModel = require("../Models/echionomyModel");
 const userModel = require("../Models/userModel");
 
+router.get("/", async (req, res, next) => {
+  const {id} = req.body;
+
+  const list = await echionomyModel.find({id: id});
+
+  return res.status(200).json(list);
+});
+
 router.post("/create", async (req, res, next) => {
   const {id, tipe, keterangan, jumlah} = req.body;
 
