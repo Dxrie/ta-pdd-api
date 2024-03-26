@@ -4,8 +4,8 @@ const router = express.Router();
 const echionomyModel = require("../Models/echionomyModel");
 const userModel = require("../Models/userModel");
 
-router.get("/", async (req, res, next) => {
-  const {id} = req.body;
+router.get("/:id", async (req, res, next) => {
+  const id = req.params.id;
 
   const list = await echionomyModel.find({id: id});
 
