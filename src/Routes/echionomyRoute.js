@@ -32,28 +32,19 @@ router.post("/create", async (req, res, next) => {
 });
 
 router.delete("/delete", async (req, res, next) => {
-  const {id, tipe, keterangan, jumlah} = req.body;
+  const {id} = req.body;
 
-  const echionomy = await echionomyModel.find({
-    id: id,
-    tipe: tipe,
-    keterangan: keterangan,
-    jumlah: jumlah,
-  });
+  const echionomy = await echionomyModel.findById(id);
 
-  if (!echionomy)
-    return res
-      .status(404)
-      .json("The echionomy report you were trying to delete doesn't exist.");
+  if (!echionomy) return res.status(404).json("Item not found.")
 
-  await echionomyModel.deleteMany({
-    id: id,
-    tipe: tipe,
-    keterangan: keterangan,
-    jumlah: jumlah,
-  });
+  try {
+    await echionomyModel.findByIdAndDelete(id);
 
-  return res.status(204).json("Successfully deleted.");
+    res.status(200).json("Element deleted.")
+  } catch (e) {
+    return res.status(500).json(e.message);
+  }
 });
 
 module.exports = router;
