@@ -31,8 +31,8 @@ router.post("/create", async (req, res, next) => {
   res.status(201).json(echionomy);
 });
 
-router.delete("/delete", async (req, res, next) => {
-  const {id} = req.body;
+router.delete("/delete/:id", async (req, res, next) => {
+  const {id} = req.params;
 
   const echionomy = await echionomyModel.findById(id);
 
